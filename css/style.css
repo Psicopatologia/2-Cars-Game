@@ -39,12 +39,6 @@ button {
     align-self: center;
 }
 
-@media (pointer:none), (pointer:coarse) {
-    button {
-        display: none;
-    }
-}
-
 #left {
     position: absolute;
     left: 0;
@@ -80,4 +74,13 @@ button {
 
 .move-right {
     left: 62.5%
+}
+
+@media (pointer:none), (pointer:coarse) {
+    button {
+        display: none;
+    }
+    .car span {
+        display: none;
+    }
 }
