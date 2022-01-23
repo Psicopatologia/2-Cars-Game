@@ -2,6 +2,8 @@ const leftCar = document.getElementsByClassName("car")[0];
 const rightCar = document.getElementsByClassName("car")[1];
 const leftButton = document.getElementById("left-button");
 const rightButton = document.getElementById("right-button");
+const leftRoad = document.getElementsByClassName("road")[0];
+const rightRoad = document.getElementsByClassName("road")[1];
 
 class Car {
     constructor(key, car) {
@@ -35,3 +37,13 @@ const changeKey = (keyToChange) => {
 
 leftButton.onclick = () => changeKey('l');
 rightButton.onclick = () => changeKey('r');
+
+document.addEventListener('keydown', (k) => {
+    if (k.key==carLeft.key)
+        carLeft.move();
+    if (k.key==carRight.key)
+        carRight.move();
+})
+
+leftRoad.onclick = () => carLeft.move();
+rightRoad.onclick = () => carRight.move();
