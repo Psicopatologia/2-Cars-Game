@@ -61,11 +61,21 @@ button {
 #restart {
     position: absolute;
     width: fit-content;
-    top: 10%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 4000;
     display: none;
+}
+
+#score {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4000;
+    color: #000;
+    background-color: white;
 }
 
 .car {
