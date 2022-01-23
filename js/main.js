@@ -4,6 +4,8 @@ const leftButton = document.getElementById("left-button");
 const rightButton = document.getElementById("right-button");
 const leftRoad = document.getElementsByClassName("road")[0];
 const rightRoad = document.getElementsByClassName("road")[1];
+const leftObstacle = document.getElementsByClassName("obstacle")[0];
+const rightObstacle = document.getElementsByClassName("obstacle")[1];
 
 class Car {
     constructor(key, car) {
@@ -53,3 +55,48 @@ document.addEventListener('keydown', (k) => {
 
 leftRoad.onclick = () => carLeft.move();
 rightRoad.onclick = () => carRight.move();
+
+const stopGame = () => {
+    leftObstacle.style.display = "none";
+    rightObstacle.style.display = "none";
+    //window.location.reload();
+}
+
+leftObstacle.style.animation = "down 2s infinite";
+rightObstacle.style.animation = "down 2s infinite";
+
+let changePositionObstacle = setInterval(() => {
+    let changeLeft = Math.random() < 0.7;
+    let changeRight = Math.random() < 0.7;
+    if (changeLeft) {
+        (leftObstacle.className == "obstacle")
+            ? leftObstacle.classList = "obstacle obstacle-right"
+            : leftObstacle.classList = "obstacle";
+    }
+    if (changeRight) {
+        (rightObstacle.className == "obstacle")
+            ? rightObstacle.classList = "obstacle obstacle-right"
+            : rightObstacle.classList = "obstacle";
+    }
+}, 2000);
+
+let checkObstacle = setInterval(()=>{
+    if ((leftObstacle.className == "obstacle" && carLeft.car.className == "car")
+        || (leftObstacle.className == "obstacle obstacle-right" && carLeft.car.className == "car move-right")) {
+        let topObstacle = parseInt(window.getComputedStyle(leftObstacle).getPropertyValue("top"));
+        let topCar = parseInt(window.getComputedStyle(carLeft.car).getPropertyValue("top"));
+        let heightCar = parseInt(window.getComputedStyle(carLeft.car).getPropertyValue("height"));
+        if (topObstacle > topCar && topObstacle < topCar+heightCar) {
+            stopGame()
+        }
+    }
+    if ((rightObstacle.className == "obstacle" && carRight.car.className == "car")
+        || (rightObstacle.className == "obstacle obstacle-right" && carRight.car.className == "car move-right")) {
+        let topObstacle = parseInt(window.getComputedStyle(rightObstacle).getPropertyValue("top"));
+        let topCar = parseInt(window.getComputedStyle(carRight.car).getPropertyValue("top"));
+        let heightCar = parseInt(window.getComputedStyle(carRight.car).getPropertyValue("height"));
+        if (topObstacle > topCar && topObstacle < topCar+heightCar) {
+            stopGame();
+        }
+    }
+},10)
