@@ -58,14 +58,14 @@ button {
     align-self: center;
 }
 
-#left {
+#restart {
     position: absolute;
-    left: 0;
-}
-
-#right {
-    position: absolute;
-    right: 0;
+    width: fit-content;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4000;
+    display: none;
 }
 
 .car {

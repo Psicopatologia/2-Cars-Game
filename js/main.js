@@ -59,7 +59,7 @@ rightRoad.onclick = () => carRight.move();
 const stopGame = () => {
     leftObstacle.style.display = "none";
     rightObstacle.style.display = "none";
-    //window.location.reload();
+    document.getElementById("restart").style.display = "block";
 }
 
 leftObstacle.style.animation = "down 2s infinite";
