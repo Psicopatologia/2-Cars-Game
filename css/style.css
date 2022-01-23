@@ -39,6 +39,12 @@ button {
     align-self: center;
 }
 
+@media (pointer:none), (pointer:coarse) {
+    button {
+        display: none;
+    }
+}
+
 #left {
     position: absolute;
     left: 0;
