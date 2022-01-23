@@ -27,21 +27,27 @@ const changeKey = (keyToChange) => {
     let finish = false;
     let newKey;
     while (!finish) {
-        newKey = prompt('Type new key').charAt(0);
+        newKey = prompt('Type new key').toLowerCase().charAt(0);
+        console.log(newKey)
         finish = confirm(`Set "${newKey}" as new key?`);
     }
-    (keyToChange == 'l') 
-        ? carLeft.changeKey(newKey)
-        : carRight.changeKey(newKey);
+    if (keyToChange == 'l') {
+        carLeft.changeKey(newKey);
+        document.getElementById("leftKey").innerHTML = newKey.toUpperCase();
+    } else {
+        carRight.changeKey(newKey);
+        document.getElementById("rightKey").innerHTML = newKey.toUpperCase();
+    }
 }
 
 leftButton.onclick = () => changeKey('l');
 rightButton.onclick = () => changeKey('r');
 
 document.addEventListener('keydown', (k) => {
-    if (k.key==carLeft.key)
+    k=k.key.toString().toLowerCase();
+    if (k==carLeft.key)
         carLeft.move();
-    if (k.key==carRight.key)
+    if (k==carRight.key)
         carRight.move();
 })
 
